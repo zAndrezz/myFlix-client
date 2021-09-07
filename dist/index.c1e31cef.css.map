@@ -1,0 +1,1 @@
+{"mappings":"AAAA;EACE;EACA;;ACDF;EACI,OAFI","sources":["src/components/movie-view/movie-view.scss","src/index.scss"],"sourcesContent":[".movie-poster img {\r\n  height: 300px;\r\n  width:200px;\r\n}","$color: steelblue;\r\n.my-flix {\r\n    color: $color;\r\n}"],"names":[],"version":3,"file":"index.c1e31cef.css.map","sourceRoot":"/__parcel_source_root/"}
