@@ -1,54 +1,65 @@
 import React from 'react';
+import axios from 'axios';
 
+import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view'
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import inceptionImage from '../../../images/inception.jpg';
-import redemptionImage from '../../../images/redemption.jpg';
-import gladiatorImage from '../../../images/gladiator.png';
+//import inceptionImage from '../../../images/inception.jpg';
+//import redemptionImage from '../../../images/redemption.jpg';
+//import gladiatorImage from '../../../images/gladiator.png';
 
  class MainView extends React.Component{
 
   constructor(){
     super();
     this.state = {
-      movies: [
-        {
-        _id: 1,
-        Title: 'Inception', 
-        Description: 'hello',
-        ImagePath: `${inceptionImage}`
-      },
-
-        {
-         _id: 2,
-         Title: 'The Shawshank Redemption', 
-        Description: 'desc2...',
-         ImagePath: `${redemptionImage}`
-        },
-
-        { _id: 3,
-           Title: 'Gladiator', 
-           Description: 'desc3...',
-            ImagePath: `${gladiatorImage}`
-          }
-      ],
-      selectedMovie: null
+      movies: [],
+      selectedMovie: null,
+      user: null
     };
   }
+  
+  componentDidMount(){
+    axios.get('https://mysterious-plateau-44583.herokuapp.com/movies')
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+ 
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie
     });
   }
 
+  SignIn(register) {
+    this.setState({
+      register
+    });
+  }
+
+
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
+      
   render() {
-    console.log(inceptionImage)
-    console.log(redemptionImage)
-    console.log(gladiatorImage)
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user, register } = this.state;
+  
+    if (!register) return <RegistrationView SignIn={register => this.SignIn(register)} />; 
 
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+    if (movies.length === 0) return <div className="main-view" />;
 
     return (
       <div className="main-view">
@@ -63,7 +74,6 @@ import gladiatorImage from '../../../images/gladiator.png';
   }
 
 }
-
 
 export default MainView;
 
