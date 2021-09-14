@@ -1,0 +1,27 @@
+*,
+body {
+  box-sizing: border-box;
+}
+
+form {
+  display: block;
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  margin-top: 15%;
+  padding: 1.5%;
+  background-color: lavender;
+  border-radius: 10px;
+}
+
+label,
+.registerBtn {
+  display: block;
+  width: 200px;
+  margin: auto;
+  margin-top: 1%;
+}
+.my-flix {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.011f33b6.css.map */
