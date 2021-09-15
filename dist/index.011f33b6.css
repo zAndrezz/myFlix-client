@@ -22,18 +22,12 @@ label,
   margin: auto;
   margin-top: 1%;
 }
-body {
-  margin: 3%;
-  background-color: #ffffff;
-  background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
-}
-
-.col-md-3 {
-  background: radial-gradient(#387989, #ffffff);
-}
-
 .cardBody {
   background: radial-gradient(#387989, #ffffff);
+}
+
+body {
+  background: radial-gradient(#ffffff, #387989);
 }
 .my-flix {
   color: steelblue;

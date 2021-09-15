@@ -1,3 +1,4 @@
+
 import React from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
@@ -5,14 +6,13 @@ import Col from 'react-bootstrap/Col';
 
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view'
+import { MovieView } from '../movie-view/movie-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 //import inceptionImage from '../../../images/inception.jpg';
 //import redemptionImage from '../../../images/redemption.jpg';
 //import gladiatorImage from '../../../images/gladiator.png';
-
  class MainView extends React.Component{
-
   constructor(){
     super();
     this.state = {
@@ -33,21 +33,17 @@ import { MovieView } from '../movie-view/movie-view';
         console.log(error);
       });
   }
-
  
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie
     });
   }
-
   SignIn(register) {
     this.setState({
       register
     });
   }
-
-
   onLoggedIn(user) {
     this.setState({
       user
@@ -58,9 +54,7 @@ import { MovieView } from '../movie-view/movie-view';
     const { movies, selectedMovie, user, register } = this.state;
   
     if (!register) return <RegistrationView SignIn={register => this.SignIn(register)} />; 
-
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
@@ -73,16 +67,16 @@ import { MovieView } from '../movie-view/movie-view';
           )
           : movies.map(movie => (
             <Col md={3}>
-              <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie); }}/>
+              <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
             </Col>
           ))
         }
       </Row>
     );
+    
   }
 
+
 }
-
 export default MainView;
-
 

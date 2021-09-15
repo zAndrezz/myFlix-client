@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
@@ -10,8 +11,8 @@ export class MovieCard extends React.Component {
 
     return (
       <Card>
+         <Card.Body className = "cardBody" >
         <Card.Img variant="top" src={movie.ImagePath} />
-        <Card.Body className = "cardBody" >
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
           <Button onClick={() => onMovieClick(movie)} variant="link">Open</Button>
