@@ -10,8 +10,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 //import inceptionImage from '../../../images/inception.jpg';
-//import redemptionImage from '../../../images/redemption.jpg';
-//import gladiatorImage from '../../../images/gladiator.png';
+
  class MainView extends React.Component{
   constructor(){
     super();
