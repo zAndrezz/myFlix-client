@@ -9,14 +9,8 @@ import { MovieView } from '../movie-view/movie-view';
 //import redemptionImage from '../../../images/redemption.jpg';
 //import gladiatorImage from '../../../images/gladiator.png';
 
-<<<<<<< Updated upstream
- class MainView extends React.Component{
-
-  constructor(){
-=======
 class MainView extends React.Component {
   constructor() {
->>>>>>> Stashed changes
     super();
     this.state = {
       movies: [],
@@ -63,23 +57,6 @@ class MainView extends React.Component {
       });
   }
 
-<<<<<<< Updated upstream
- 
-  setSelectedMovie(newSelectedMovie) {
-    this.setState({
-      selectedMovie: newSelectedMovie
-    });
-  }
-
-  SignIn(register) {
-    this.setState({
-      register
-    });
-  }
-
-
-  onLoggedIn(user) {
-=======
   //   Get all movies in DB
   getMovies(token) {
     axios.get(' https://mysterious-plateau-44583.herokuapp.com/movies', {
@@ -97,7 +74,6 @@ class MainView extends React.Component {
   }
 
   onRegister(register) {
->>>>>>> Stashed changes
     this.setState({
       register: register,
     });
