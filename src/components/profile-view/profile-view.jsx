@@ -73,7 +73,7 @@ export class ProfileView extends React.Component {
     this.setState({
       validated: null,
     });
-
+//
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();

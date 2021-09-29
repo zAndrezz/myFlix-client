@@ -40706,6 +40706,7 @@ class ProfileView extends _reactDefault.default.Component {
         this.setState({
             validated: null
         });
+        //
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.preventDefault();
