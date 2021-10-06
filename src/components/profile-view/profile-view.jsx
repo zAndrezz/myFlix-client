@@ -171,7 +171,8 @@ export class ProfileView extends React.Component {
                   return (
                     <CardDeck key={movie._id} className="movie-card-deck">
                       <Card className="favorites-item card-content border-0" style={{ width: '16rem' }} key={movie._id}>
-                        <Card.Img style={{ width: '18rem', 'padding-top': '10px' }} className="movieCard" variant="top" src={movie.ImageURL} />
+                        <Card.Img style={{ width: '18rem', 'padding-top': '10px' }} className="movieCard" variant="top" src={movie.ImagePath
+} />
                         <Card.Title className="movie-card-title">{movie.Title}</Card.Title>
                         <Button size='sm' className='profile-button remove-favorite' variant='danger' value={movie._id} onClick={() => this.removeFavouriteMovie(movie)}>
                           Remove

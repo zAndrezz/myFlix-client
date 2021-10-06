@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import './movie-card.scss';
 import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
-import { Row }   from 'react-bootstrap';
+import  Row    from 'react-bootstrap/Row';
 
 
 export class MovieCard extends React.Component {
@@ -13,11 +13,10 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Container>
-        <Row  className="justify-content-md-center">
       <Card style={{ width: '18rem' }}>
         <Link to={`/movies/${movie._id}`}>
-          <Card.Img className="image-container" variant="top" src={movie.ImageURL} />
+          <Card.Img className="image-container" variant="top" src={movie.ImagePath
+} />
         </Link>
         <Card.Body>
           <Card.Title><h4>{movie.Title}</h4></Card.Title>
@@ -27,8 +26,7 @@ export class MovieCard extends React.Component {
           </Link>
         </Card.Body>
       </Card>
-      </Row>
-      </Container>
+     
     );
   }
 }

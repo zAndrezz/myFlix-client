@@ -46,9 +46,7 @@ export class NavBar extends React.Component {
             </Nav.Link>
 
           </Nav>
-          <Form className="d-flex">
-            <FormControl type="text" placeholder="Search" />
-          </Form>
+        
        
           </Navbar.Collapse>
       </Navbar>
