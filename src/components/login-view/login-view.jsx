@@ -48,7 +48,7 @@ export function LoginView(props) {
             <Button variant="success link">Register</Button>
           </Link>
         </span>
-      </Form>
+      </Form> 
     </div>
   );
 }
