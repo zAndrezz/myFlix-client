@@ -23,6 +23,7 @@ export class NavBar extends React.Component {
     if (!user) return null;
 
     return (
+      <Container style={{textAlign: 'center'}}>
       <Navbar bg="light" expand="lg">
     
       <Navbar.Collapse id="navbarScroll">
@@ -50,6 +51,7 @@ export class NavBar extends React.Component {
        
           </Navbar.Collapse>
       </Navbar>
+      </Container>
     );
   }
 }

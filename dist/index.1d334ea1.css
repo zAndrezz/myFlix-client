@@ -6,32 +6,6 @@ form {
   padding: 5px;
 }
 
-label {
-  display: block;
-  margin: auto;
-}
-*,
-body {
-  box-sizing: border-box;
-}
-
-form {
-  display: block;
-  text-align: center;
-  width: 300px;
-  margin: auto;
-  margin-top: 15%;
-  padding: 1.5%;
-  border-radius: 10px;
-}
-
-label,
-.registerBtn {
-  display: block;
-  width: 200px;
-  margin: auto;
-  margin-top: 1%;
-}
 
 
 

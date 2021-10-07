@@ -41162,66 +41162,76 @@ class NavBar extends _reactDefault.default.Component {
         const movies = `/`;
         const profile = `/users/${user}`;
         if (!user) return null;
-        return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
-            bg: "light",
-            expand: "lg",
+        return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
+            style: {
+                textAlign: 'center'
+            },
             __source: {
                 fileName: "src/components/navbar-view/navbar-view.jsx",
                 lineNumber: 26
             },
             __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Collapse, {
-                id: "navbarScroll",
+            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
+                bg: "light",
+                expand: "lg",
                 __source: {
                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                    lineNumber: 28
+                    lineNumber: 27
                 },
                 __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
-                    className: "mr-auto my-2 my-lg-0",
-                    style: {
-                        maxHeight: '100px'
-                    },
-                    navbarScroll: true,
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Collapse, {
+                    id: "navbarScroll",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
                         lineNumber: 29
                     },
                     __self: this,
-                    children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            as: _reactRouterDom.Link,
-                            to: movies,
-                            className: "link-text",
-                            __source: {
-                                fileName: "src/components/navbar-view/navbar-view.jsx",
-                                lineNumber: 36
-                            },
-                            __self: this,
-                            children: "Movies"
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            as: _reactRouterDom.Link,
-                            to: profile,
-                            className: "link-text",
-                            __source: {
-                                fileName: "src/components/navbar-view/navbar-view.jsx",
-                                lineNumber: 40
-                            },
-                            __self: this,
-                            children: "Profile"
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            to: '/',
-                            onClick: this.onLoggedOut,
-                            __source: {
-                                fileName: "src/components/navbar-view/navbar-view.jsx",
-                                lineNumber: 44
-                            },
-                            __self: this,
-                            children: "Log Out"
-                        })
-                    ]
+                    children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
+                        className: "mr-auto my-2 my-lg-0",
+                        style: {
+                            maxHeight: '100px'
+                        },
+                        navbarScroll: true,
+                        __source: {
+                            fileName: "src/components/navbar-view/navbar-view.jsx",
+                            lineNumber: 30
+                        },
+                        __self: this,
+                        children: [
+                            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                as: _reactRouterDom.Link,
+                                to: movies,
+                                className: "link-text",
+                                __source: {
+                                    fileName: "src/components/navbar-view/navbar-view.jsx",
+                                    lineNumber: 37
+                                },
+                                __self: this,
+                                children: "Movies"
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                as: _reactRouterDom.Link,
+                                to: profile,
+                                className: "link-text",
+                                __source: {
+                                    fileName: "src/components/navbar-view/navbar-view.jsx",
+                                    lineNumber: 41
+                                },
+                                __self: this,
+                                children: "Profile"
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                to: '/',
+                                onClick: this.onLoggedOut,
+                                __source: {
+                                    fileName: "src/components/navbar-view/navbar-view.jsx",
+                                    lineNumber: 45
+                                },
+                                __self: this,
+                                children: "Log Out"
+                            })
+                        ]
+                    })
                 })
             })
         }));
