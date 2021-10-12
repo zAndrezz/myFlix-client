@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -10,7 +9,7 @@ function VisibilityFilterInput(props) {
   return <Form.Control
     onChange={e => props.setFilter(e.target.value)}
     value={props.visibilityFilter}
-    placeholder="Search Movies"
+    placeholder="filter"
   />;
 }
 
