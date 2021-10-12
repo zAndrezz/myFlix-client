@@ -2,11 +2,19 @@
 import React from 'react';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+
+// React-router-DOM components
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+// actions
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
+ 
 // React-Bootstrap Components
+
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieView } from '../movie-view/movie-view';
-import { MovieCard } from '../movie-card/movie-card';
 import  DirectorView  from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
@@ -17,18 +25,16 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-// React-router-DOM components
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
 
 // SCSS Styling import
 import './main-view.scss';
 
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
       user: null,
     };
   }
@@ -96,7 +102,7 @@ export class MainView extends React.Component {
 
 
   render() {
-    const { movies, user } = this.state;
+    const { movies, user } = this.props;
     console.log("render", user);
 
     return (
@@ -171,6 +177,10 @@ export class MainView extends React.Component {
       </Router>
     );
   }
+  
 };
-
-export default MainView;
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+// #8
+export default connect(mapStateToProps, { setMovies } )(MainView);
