@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
@@ -16,10 +15,11 @@ function MoviesList(props) {
   let filteredMovies = movies;
 
   if (visibilityFilter !== '') {
-    filteredMovies = movies.filter(m => m.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
+    filteredMovies = movies.filter(m => 
+      m.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
   }
 
-  if (!movies) return <div className="main-view"/>;
+  if (!movies) return <div className="main-view" />;
 
   return <>
     <Col md={12} style={{ margin: '1em' }}>
@@ -33,4 +33,4 @@ function MoviesList(props) {
   </>;
 }
 
-export default connect(mapStateToProps)(MoviesList);0
+export default connect(mapStateToProps)(MoviesList);

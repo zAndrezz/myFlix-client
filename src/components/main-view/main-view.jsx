@@ -32,22 +32,24 @@ import './main-view.scss';
 
 
 class MainView extends React.Component {
-  constructor() {
-    super();
+  
+  constructor() { //The method that React uses to actually create the component
+    super(); // This will call the parent React.Component’s constructor, which will give your class the actual React component’s features. Also, it will initialize the component’s this variable
     this.state = {
-      user: null,
-    };
-  }
+      // #3 movies state removed from here
+        user: null,
+      };    
+}
 
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-    }
+componentDidMount(){
+  let accessToken = localStorage.getItem('token');
+  if (accessToken !== null) {
+    this.setState({
+      user: localStorage.getItem('user')
+    });
+    this.getMovies(accessToken);
   }
+}
 
   // Log In
   onLoggedIn(authData) {
@@ -102,9 +104,8 @@ class MainView extends React.Component {
 
 
   render() {
-    const { movies, user } = this.props;
-    console.log("render", user);
-
+    let { movies } = this.props;
+    let { user } = this.state;
     return (
       <Router>
         <NavBar user={user} />
@@ -182,5 +183,6 @@ class MainView extends React.Component {
 let mapStateToProps = state => {
   return { movies: state.movies }
 }
+
 // #8
-export default connect(mapStateToProps, { setMovies } )(MainView);
+export default connect(mapStateToProps, { setMovies })(MainView);// Modules
