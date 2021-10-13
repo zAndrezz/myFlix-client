@@ -67,17 +67,16 @@ componentDidMount(){
     axios.post('https://mysterious-plateau-44583.herokuapp.com/users', {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(response => {
-        // Assign the result to the state
-        this.setState({
-          users: response.data
-        });
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .then(response => {
+
+      // #4
+      this.props.setMovies(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
+  
 
   //   Get all movies in DB
   getMovies(token) {
@@ -86,7 +85,7 @@ componentDidMount(){
     })
       .then(response => {
         // Assign the result to the state
-        this.setState({
+        this.props({
           movies: response.data
         });
       })
@@ -184,4 +183,4 @@ let mapStateToProps = state => {
 }
 
 // #8
-export default connect(mapStateToProps, { setMovies })(MainView);// Modules
+export default connect(mapStateToProps, { setMovies } )(MainView);
