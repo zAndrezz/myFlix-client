@@ -23,10 +23,10 @@ export class NavBar extends React.Component {
     if (!user) return null;
 
     return (
-      <Navbar bg="dark" collapseOnSelect fixed='top' expand="lg" variant="dark" >
+      <Navbar bg="dark"  fixed='top'  variant="dark" >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-        <Navbar.Collapse id="responsive-navbar-nav">
+        
           <Nav className="ml-auto">
 
             <Nav.Link as={Link} to={movies} className="link-text">
@@ -42,7 +42,7 @@ export class NavBar extends React.Component {
             </Nav.Link>
 
           </Nav>
-        </Navbar.Collapse>
+       
       </Navbar>
     );
   }

@@ -83,15 +83,14 @@ componentDidMount(){
     axios.get('https://mysterious-plateau-44583.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(response => {
-        // Assign the result to the state
-        this.props({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    .then(response => {
+
+      // #4
+      this.props.setMovies(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   onRegister(register) {
@@ -115,11 +114,8 @@ componentDidMount(){
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
             if (movies.length === 0) return <div className="main-view" />;
-            return movies.map(m => (
-              <Col md={3} key={m._id}>
-                <MovieCard movie={m} />
-              </Col>
-            ))
+            return <MoviesList movies={movies}/>;
+           
           }} />
 
           <Route path="/register" render={() => {
