@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
 import './login-view.scss';
 
 export function LoginView(props) {
@@ -54,10 +55,8 @@ export function LoginView(props) {
 }
 
 
-LoginView.propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-  }),
-  onLoggedIn: PropTypes.func.isRequired
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleSubmit: (username, password) => dispatch(handleSubmit(username, password))
+});
+
+export default connect(null, mapDispatchToProps)(LoginView);

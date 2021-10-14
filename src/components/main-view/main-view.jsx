@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 // React-router-DOM components
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 // actions
-import { setMovies } from '../../actions/actions';
+import { setMovies,setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
  
 // React-Bootstrap Components

@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { Button, Card, CardDeck, Form, Row } from 'react-bootstrap';
 
-
+import { setUser} from '../../actions/actions';
 
 import './profile-view.scss';
 
@@ -10,7 +11,7 @@ export class ProfileView extends React.Component {
   constructor() {
     super();
 
-    this.state = {
+    this.setState = {
       Name: null,
       Username: null,
       Password: null,
@@ -234,5 +235,4 @@ let mapStateToProps = state => {
     movies: state.movies
   }
 }
-
-export default ProfileView;
+export default connect(mapStateToProps, { setUser })(ProfileView);

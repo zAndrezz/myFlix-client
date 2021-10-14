@@ -1,62 +1,23 @@
-.image-container {
-  transition: transform 0.2s;
-  border-style: none;
-}
-
-.image-container:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-}
-
-.image-container:hover .overlay {
-  opacity: 1;
-}
-
-.overlay {
-  position: absolute;
-  width: 100%;
-  transition: 0.5s ease;
-  opacity: 0;
-  bottom: 0;
-  font-size: 10px;
+body {
+  box-sizing: border-box;
   padding: 20px;
-  text-align: center;
+  margin: auto;
 }
 
-.fav-btn {
-  padding-left: 35px;
-}
-.login {
-  margin-top: auto;
-  width: 100%;
-  padding: 30px;
-  border: 0.3px solid grey;
-  box-shadow: 5px 5px 5px grey;
-  border-radius: 15px;
+.form-control {
+  box-sizing: border-box;
 }
 
 .app-container {
-  padding: 5px;
-}
-.register {
-  padding: 30px;
-  border: 0.3px solid grey;
-  box-shadow: 5px 5px 5px grey;
-  border-radius: 15px;
-}
-
-div {
-  width: 100%;
+  padding: 1%;
+  box-sizing: border-box;
+  margin-bottom: 80px;
+  display: block;
 }
 
 
-.Card {
-  margin: 10px;
-}
 
-.navbar-expand {
-  margin: 15px;
-}
+
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.1 (https://getbootstrap.com/)
@@ -10452,8 +10413,4 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.movie-card:hover,
-.movie-card focus {
-  cursor: pointer;
-}
-/*# sourceMappingURL=index.3f764291.css.map */
+/*# sourceMappingURL=index.751fa92b.css.map */
