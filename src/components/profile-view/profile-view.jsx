@@ -1,219 +1,240 @@
-import React, {useState, useEffect} from 'react';
+
+import React from 'react';
 import axios from 'axios';
+import { Button, Card, CardDeck, Form, Row } from 'react-bootstrap';
 
 
-import { connect } from 'react-redux';
 
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
-import MovieCard from '../movie-card/movie-card';
+import './profile-view.scss';
 
-const mapStateToProps = state => {
-  const { movies, user } = state;
-  return { movies, user };
-};
+export class ProfileView extends React.Component {
+  constructor() {
+    super();
 
-const API_ADDRESS = "https://mysterious-plateau-44583.herokuapp.com ";
-
-function ProfileView(props) {
-
-  const { movies, user } = props;
-
-  const [userData, setUserData] = useState(user);
-  const [form   , setForm  ] = useState(null);
-  const [errors , setErrors] = useState({});
-
-  const setField = (field, value) => {
-    setForm({
-      ...form,
-      [field]:value
-    })
-    if( !!errors[field] ) setErrors({
-      ...errors,
-      [field]: null
-    })
+    this.state = {
+      Name: null,
+      Username: null,
+      Password: null,
+      Email: null,
+      Birthdate: null,
+      FavoriteMovies: [],
+      validated: null,
+    };
   }
 
-  //props user if they want to delete their account then deletes it
-  const deleteUser = () => {
-    if(confirm("Are you sure you want to delete your account?")){
-      axios.delete(`${API_ADDRESS}/users/${localStorage.getItem('user')}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-      }).then(response => {
-        props.onLoggedOut();
-      }).catch(function (error) {
+  componentDidMount() {
+    const accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.getUser(accessToken);
+    }
+  }
+
+
+  // get user method
+  getUser(token) {
+    const username = localStorage.getItem('user');
+    axios.get(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        this.setState({
+          Name: response.data.Name,
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthdate: response.data.Birthdate,
+          FavoriteMovies: response.data.FavoriteMovies,
+        });
+      })
+      .catch(function (error) {
         console.log(error);
       });
-    }
-  }
-
-  //adds the list of favorite movies
-  const showFavorites = () => {
-    if(!user.FavoriteMovies || user.FavoriteMovies.length < 1){
-      return (<>
-        <Card.Text> Check out some movies on the home page</Card.Text>
-        <Button onClick={()=> {window.open("/","_self")}}> Home</Button>
-      </>);
-    }
-    var faves = [];
-    user.FavoriteMovies.map(f => (
-      faves.push(props.movies.find(m => m._id === f))
-    ))
-    return (<Row>
-      {faves.map(m => (
-        <Col md={3}  key={m._id} className="p-1">
-          <MovieCard movie={m} removeMovie={id => props.removeMovie(id)}/>
-        </Col>
-      ))}
-    </Row>);
   }
 
 
-  const updateUser = (updateObject) => {
-    axios.put(`${API_ADDRESS}/users/${localStorage.getItem('user')}`,
-      updateObject,
-      { headers: {Authorization: `Bearer ${localStorage.getItem('token')}`} }
-      ).then(response => {
-        setUserData(response.data);
-        props.onUpdate(response.data);
-        window.open("/user","_self")
-    }).catch(function (error) {
-      console.log(error);
+  removeFavouriteMovie(movie) {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+
+
+    axios.delete(`https://mysterious-plateau-44583.herokuapp.com/users/${username}/removeFromFav/${movie._id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(() => {
+        alert('Movie was removed');
+        this.componentDidMount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
+  handleUpdate(e, newName, newUsername, newPassword, newEmail, newBirthdate) {
+    this.setState({
+      validated: null,
     });
-  }
 
-  const removeMovie = (id) => {
-      props.removeMovie(id);
-  }
-
-  //Error checking functions
-  //checks if the string is contains anything other then letters or numbers
-  const isAlphaNumeric = (str) => {
-    return /^(\d|\w)+$/.test(str);
-  };
-
-  //email checking function
-  const isValidEmail = (mail) => {
-    return /^\S+@\S+\.\S+$/.test(mail);
-  }
-
-  //function to check for erros in the form
-  const findFormErrors = () => {
-    const {Username, Password, PasswordConfirm, email} = form
-    setErrors({});
-    const newErrors = {};
-    //Username Errors
-    if( !(!Username || Username === "") ){
-      if(!isAlphaNumeric(Username)) newErrors.Username = "Username can only be letters and numbers";
-    }
-    //Password Errors
-    if( !(!Password || Password === "") ){
-      if(Password.length < 8) newErrors.Password = "Password must be at least 8 characters long";
-    }
-
-    if(PasswordConfirm !== Password) newErrors.PasswordConfirm = "New Passwords must match"
-
-    //Email errors
-    if( !(!email || email === "") ){
-      if( !isValidEmail(email)) newErrors.email = "Email does not seem to be vailid"
-    }
-    return newErrors;
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const newErrors = findFormErrors();
-
-    if(Object.keys(newErrors).length > 0){
-      setErrors(newErrors);
-    }else{
-      var updateObject = {};
-      Object.keys(form).forEach(key => {
-        var casedKey = key[0].toUpperCase() + key.slice(1);
-        if(!!form[key] && key !== "PasswordConfirm") updateObject[casedKey] = form[key];
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({
+        validated: true,
       });
-      updateUser(updateObject);
+      return;
     }
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+
+    axios.put(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        Name: newName ? newName : this.state.Name,
+        Username: newUsername ? newUsername : this.state.Username,
+        Password: newPassword ? newPassword : this.state.Password,
+        Email: newEmail ? newEmail : this.state.Email,
+        Birthdate: newBirthdate ? newBirthdate : this.state.Birthdate,
+      },
+    })
+      .then((response) => {
+        alert('Saved Changes');
+        this.setState({
+          Name: response.data.Name,
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthdate: response.data.Birthdate,
+        });
+        localStorage.setItem('user', this.state.Username);
+        window.open(`/users/${username}`, '_self');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  setName(input) {
+    this.Name = input;
   }
 
-  return (
+  setUsername(input) {
+    this.Username = input;
+  }
 
-    <Card>
-      <Card.Body>
-      <Card.Title>Profile</Card.Title>
-      <Form noValidate onSubmit={handleSubmit}>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <InputGroup hasValidation>
-            <Form.Control
-              type="text"
-              onChange={ e => setField('Username', e.target.value)}
-              isInvalid={!!errors.Username}
-              placeholder = {user.Username}
-            />
-            <Form.Control.Feedback type="invalid">{errors.Username}</Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
+  setPassword(input) {
+    this.Password = input;
+  }
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>New Password:</Form.Label>
-          <InputGroup hasValidation>
-            <Form.Control
-              type="Password"
-              onChange={ e => setField('Password', e.target.value)}
-              isInvalid = {!!errors.Password}
-            />
-            <Form.Control.Feedback type="invalid">{errors.Password}</Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
-        <Form.Group controlId="formPasswordConfirm">
-          <Form.Label>Confirm Password:</Form.Label>
-          <InputGroup hasValidation>
-            <Form.Control
-              type="Password"
-              onChange={ e => setField('PasswordConfirm', e.target.value)}
-              isInvalid = {!!errors.PasswordConfirm}
-            />
-            <Form.Control.Feedback type="invalid">{errors.PasswordConfirm}</Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email:</Form.Label>
-          <InputGroup hasValidation>
-            <Form.Control
-              type="text"
-              placeholder = {user.Email}
-              onChange={ e => setField('email', e.target.value)}
-              isInvalid = {!!errors.email}
-            />
-            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
-        <Form.Label>Enter the information you want to change then click Update</Form.Label><br/>
-        <Button disabled={ !!form ? false : true} type="submit">Update</Button>
-      </Form>
+  setEmail(input) {
+    this.Email = input;
+  }
 
-      </Card.Body>
+  setBirthdate(input) {
+    this.Birthdate = input;
+  }
 
-      <Card.Body>
-        <Card.Title>Delete Account</Card.Title>
-        <Card.Text>All of your information will be deleted! There is no going back</Card.Text>
-        <Button variant="danger" onClick={()=>deleteUser()}>Delete!</Button>
-      </Card.Body>
+  handleDeleteUser(e) {
+    e.preventDefault();
 
-      <Card.Body>
-        <Card.Title>Favorite Movies</Card.Title>
-        {showFavorites()}
-      </Card.Body>
-    </Card>
-  );
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+
+    axios.delete(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(() => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        alert('Your account has been deleted.');
+        window.open(`/`, '_self');
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  render() {
+    const { FavoriteMovies, validated } = this.state;
+    const { movies } = this.props;
+
+    return (
+      <Row className="profile-view">
+        <Card className="profile-card border-0">
+          <h1>Your Favorites Movies</h1>
+          {FavoriteMovies.length === 0 && <div className="text-center">Empty.</div>}
+
+          <div className="favorites-movies">
+            {FavoriteMovies.length > 0 &&
+              movies.map((movie) => {
+                if (movie._id === FavoriteMovies.find((FavoriteMovie) => FavoriteMovie === movie._id)) {
+                  return (
+                    <CardDeck key={movie._id} className="movie-card-deck">
+                      <Card className="favorites-item card-content border-0" style={{ width: '16rem' }} key={movie._id}>
+                        <Card.Img style={{ width: '18rem', 'padding-top': '10px' }} className="movieCard" variant="top" src={movie.ImagePath} />
+                        <Card.Title className="movie-card-title">{movie.Title}</Card.Title>
+                        <Button size='sm' className='profile-button remove-favorite' variant='danger' value={movie._id} onClick={() => this.removeFavouriteMovie(movie)}>
+                          Remove
+                        </Button>
+                      </Card>
+                    </CardDeck>
+                  );
+                }
+              })}
+          </div>
+
+          <h1 className="Profile">Update Profile</h1>
+          <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Name, this.Username, this.Password, this.Email, this.Birthdate)}>
+
+            <Form.Group controlId="formName">
+              <Form.Label className="form-label">Name</Form.Label>
+              <Form.Control type="text" placeholder="Change Name" onChange={(e) => this.setName(e.target.value)} />
+            </Form.Group>
+
+            <Form.Group controlId="formUsername">
+              <Form.Label className="form-label">Username</Form.Label>
+              <Form.Control type="text" placeholder="Change Username" onChange={(e) => this.setUsername(e.target.value)} />
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+              <Form.Label className="form-label">
+                Password<span className="required">*</span>
+              </Form.Label>
+              <Form.Control type="password" placeholder="New Password" onChange={(e) => this.setPassword(e.target.value)} />
+            </Form.Group>
+
+            <Form.Group controlId="formEmail">
+              <Form.Label className="form-label">Email</Form.Label>
+              <Form.Control type="email" placeholder="Change Email" onChange={(e) => this.setEmail(e.target.value)} />
+            </Form.Group>
+
+            <Form.Group controlId="formBirthdate">
+              <Form.Label className="form-label">Birthdate</Form.Label>
+              <Form.Control type="date" placeholder="Change Birthdate" onChange={(e) => this.setBirthdate(e.target.value)} />
+            </Form.Group>
+
+            <Button variant='danger' type="submit">
+              Update
+            </Button>
+
+            <h3>Delete your Account</h3>
+            <Button variant='danger' onClick={(e) => this.handleDeleteUser(e)}>
+              Delete Account
+            </Button>
+          </Form>
+
+        </Card>
+      </Row >
+    );
+  }
 }
 
-export default connect(mapStateToProps)(ProfileView);
+let mapStateToProps = state => {
+  return {
+    user: state.user,
+    movies: state.movies
+  }
+}
+
+export default ProfileView;
