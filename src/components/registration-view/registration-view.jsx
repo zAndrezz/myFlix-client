@@ -11,17 +11,17 @@ import './registration-view.scss';
 
 export function RegistrationView(props) {
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [birthdate, setBirthdate] = useState("");
+  const [Birthday, setBirthday] = useState("");
 
 
   const [nameError, setNameError] = useState({});
-  const [usernameError, setUsernameError] = useState({});
-  const [passwordError, setPasswordError] = useState({});
+  const [UsernameError, setUsernameError] = useState({});
+  const [PasswordError, setPasswordError] = useState({});
   const [emailError, setEmailError] = useState({});
-  const [birthdateError, setBirthdateError] = useState({});
+  const [BirthdayError, setBirthdayError] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,10 +29,10 @@ export function RegistrationView(props) {
     if (setisValid) {
       axios.post('https://mysterious-plateau-44583.herokuapp.com/users', {
         Name: name,
-        Username: username,
-        Password: password,
+        Username: Username,
+        Password: Password,
         Email: email,
-        Birthdate: birthdate
+        Birthday: Birthday
       })
         .then(response => {
           const data = response.data;
@@ -47,37 +47,37 @@ export function RegistrationView(props) {
 
   const formValidation = () => {
     let nameError = {};
-    let usernameError = {};
-    let passwordError = {};
+    let UsernameError = {};
+    let PasswordError = {};
     let emailError = {};
-    let birthdateError = {};
+    let BirthdayError = {};
     let isValid = true;
 
     if (name === '') {
       nameError.nameEmpty = "Please enter your Name.";
       isValid = false;
     }
-    if (username.trim().length < 4) {
-      usernameError.usernameShort = "Username incorrect. Use at least 4 characters.";
+    if (Username.trim().length < 4) {
+      UsernameError.UsernameShort = "Username incorrect. Use at least 4 characters.";
       isValid = false;
     }
-    if (password.trim().length < 5) {
-      passwordError.passwordMissing = "Password incorrect. Use at least 5 characters.";
+    if (Password.trim().length < 5) {
+      PasswordError.PasswordMissing = "Password incorrect. Use at least 5 characters.";
       isValid = false;
     }
     if (!(email && email.includes(".") && email.includes("@"))) {
       emailError.emailNotEmail = "Email address incorrect.";
       isValid = false;
     }
-    if (birthdate === '') {
-      birthdateError.birthdateEmpty = "Please enter your birthdate.";
+    if (Birthday === '') {
+      BirthdayError.BirthdayEmpty = "Please enter your Birthday.";
       isValid = false;
     }
     setNameError(nameError);
-    setUsernameError(usernameError);
-    setPasswordError(passwordError);
+    setUsernameError(UsernameError);
+    setPasswordError(PasswordError);
     setEmailError(emailError);
-    setBirthdateError(birthdateError);
+    setBirthdayError(BirthdayError);
     return isValid;
   };
 
@@ -99,11 +99,11 @@ export function RegistrationView(props) {
 
       <Form.Group controlId="formUsername">
         <Form.Label>Username:</Form.Label>
-        <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
-        {Object.keys(usernameError).map((key) => {
+        <Form.Control type="text" value={Username} onChange={e => setUsername(e.target.value)} />
+        {Object.keys(UsernameError).map((key) => {
           return (
             <div key={key}>
-              {usernameError[key]}
+              {UsernameError[key]}
             </div>
           );
         })}
@@ -112,11 +112,11 @@ export function RegistrationView(props) {
       <Row>
         <Form.Group controlId="formPassword">
           <Form.Label>Create Password:</Form.Label>
-          <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-          {Object.keys(passwordError).map((key) => {
+          <Form.Control type="Password" value={Password} onChange={e => setPassword(e.target.value)} />
+          {Object.keys(PasswordError).map((key) => {
             return (
               <div key={key}>
-                {passwordError[key]}
+                {PasswordError[key]}
               </div>
             );
           })}
@@ -137,13 +137,13 @@ export function RegistrationView(props) {
         </Form.Group>
       </Row>
 
-      <Form.Group controlId="formBirthdate">
-        <Form.Label>Birthdate:</Form.Label>
-        <Form.Control type="date" value={birthdate} onChange={e => setBirthdate(e.target.value)} />
-        {Object.keys(birthdateError).map((key) => {
+      <Form.Group controlId="formBirthday">
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control type="date" value={Birthday} onChange={e => setBirthday(e.target.value)} />
+        {Object.keys(BirthdayError).map((key) => {
           return (
             <div key={key}>
-              {birthdateError[key]}
+              {BirthdayError[key]}
             </div>
           );
         })}
@@ -166,6 +166,6 @@ RegistrationView.propTypes = {
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
-    Birthdate: PropTypes.string.isRequired
+    Birthday: PropTypes.string.isRequired
   }),
 };

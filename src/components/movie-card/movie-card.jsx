@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './movie-card.scss';
-import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
 import  Row    from 'react-bootstrap/Row';
+import  Col  from 'react-bootstrap/Col';
 
 
 export class MovieCard extends React.Component {
@@ -13,7 +13,11 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Card style={{ width: '18rem' }}>
+      
+    
+      <Row m={4}>
+    <Col xs={12} md={8} >
+      <Card  style={{ width: '18rem' }}>
         <Link to={`/movies/${movie._id}`}>
           <Card.Img className="image-container" variant="top" src={movie.ImagePath
 } />
@@ -26,7 +30,10 @@ export class MovieCard extends React.Component {
           </Link>
         </Card.Body>
       </Card>
-     
+      </Col> 
+
+</Row>
+
     );
   }
 }

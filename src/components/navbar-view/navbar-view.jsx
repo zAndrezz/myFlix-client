@@ -23,7 +23,7 @@ export class NavBar extends React.Component {
     if (!user) return null;
 
     return (
-      <Navbar bg="dark" collapseOnSelect fixed='top' expand="lg" variant="dark" >
+      <Navbar bg="dark" collapseOnSelect fixed='top' expand="sm" variant="dark" >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">

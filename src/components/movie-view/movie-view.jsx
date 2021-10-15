@@ -22,9 +22,9 @@ export class MovieView extends React.Component {
 
   addFavorite() {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('user');
+    const Username = localStorage.getItem('user');
 
-    axios.post(`https://mysterious-plateau-44583.herokuapp.com/users/${username}/movies/${this.props.movie._id}`, {}, {
+    axios.post(`https://mysterious-plateau-44583.herokuapp.com/users/${Username}/movies/${this.props.movie._id}`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {

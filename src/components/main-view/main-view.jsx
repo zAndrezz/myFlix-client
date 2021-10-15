@@ -7,18 +7,18 @@ import { connect } from 'react-redux';
 // React-router-DOM components
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 // actions
-import { setMovies,setUser } from '../../actions/actions';
+import { setMovies,setUsers } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
  
 // React-Bootstrap Components
 
-import { LoginView } from '../login-view/login-view';
+import  LoginView  from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieView } from '../movie-view/movie-view';
 import  DirectorView  from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
-import { ProfileView } from '../profile-view/profile-view';
-import { NavBar } from '../navbar-view/navbar-view';
+import  ProfileView from '../profile-view/profile-view';
+import NavBar from '../navbar-view/navbar-view';
 
 // React-Bootstrap Components
 import Col from 'react-bootstrap/Col';
@@ -162,7 +162,7 @@ componentDidMount(){
             </Col>
           }} />
 
-          <Route exact path='/users/:username' render={({ history }) => {
+          <Route exact path='/users/:Username' render={({ history }) => {
             if (!user) return <LoginView onLoggedIn={(data) => this.onLoggedIn(data)} />;
             if (movies.length === 0) return;
             return <ProfileView history={history} movies={movies} />
