@@ -169,3 +169,4 @@ RegistrationView.propTypes = {
     Birthday: PropTypes.string.isRequired
   }),
 };
+export default RegistrationView;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
-import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
 
 export class NavBar extends React.Component {
   constructor() {
@@ -23,7 +24,7 @@ export class NavBar extends React.Component {
     if (!user) return null;
 
     return (
-      <Navbar bg="dark" collapseOnSelect fixed='top' expand="sm" variant="dark" >
+      <Navbar bg="dark" collapseOnSelect fixed='top' expand="lg" variant="dark" >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -42,6 +43,7 @@ export class NavBar extends React.Component {
             </Nav.Link>
 
           </Nav>
+
         </Navbar.Collapse>
       </Navbar>
     );

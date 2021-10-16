@@ -7,17 +7,17 @@ import { connect } from 'react-redux';
 // React-router-DOM components
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 // actions
-import { setMovies,setUsers } from '../../actions/actions';
+import { setMovies} from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
  
 // React-Bootstrap Components
 
 import  LoginView  from '../login-view/login-view';
-import { RegistrationView } from '../registration-view/registration-view';
-import { MovieView } from '../movie-view/movie-view';
+import  RegistrationView  from '../registration-view/registration-view';
+import  MovieView  from '../movie-view/movie-view';
 import  DirectorView  from '../director-view/director-view';
-import { GenreView } from '../genre-view/genre-view';
-import  {ProfileView} from '../profile-view/profile-view';
+import GenreView  from '../genre-view/genre-view';
+import  ProfileView from '../profile-view/profile-view';
 import NavBar from '../navbar-view/navbar-view';
 
 // React-Bootstrap Components

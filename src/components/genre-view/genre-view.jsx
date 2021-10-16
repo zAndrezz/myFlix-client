@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import  Button  from 'react-bootstrap/Button';
 
 
 
@@ -28,3 +28,5 @@ export class GenreView extends React.Component {
     );
   }
 }
+
+export default GenreView;

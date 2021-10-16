@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import './movie-card.scss';
 import { Link } from "react-router-dom";
 import  Row    from 'react-bootstrap/Row';
 import  Col  from 'react-bootstrap/Col';
-
+import './movie-card.scss';
 
 export class MovieCard extends React.Component {
   render() {
@@ -45,3 +44,5 @@ MovieCard.propTypes = {
     Featured: PropTypes.bool.isRequired,
   }).isRequired,
 };
+
+export default MovieCard;

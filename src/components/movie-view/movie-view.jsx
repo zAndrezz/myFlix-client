@@ -88,3 +88,4 @@ MovieView.propTypes = {
   }).isRequired
 };
 
+export default MovieView;

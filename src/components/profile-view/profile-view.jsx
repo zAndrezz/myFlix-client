@@ -1,10 +1,10 @@
 
 import React from 'react';
 import axios from 'axios';
-import { Button, Card, CardDeck, Form, Row } from 'react-bootstrap';
-
-
-
+import  Button  from 'react-bootstrap/Button';
+import  Card  from 'react-bootstrap/Card';
+import  Form  from 'react-bootstrap/Form';
+import  Row  from 'react-bootstrap/Row';
 
 import './profile-view.scss';
 
@@ -45,7 +45,7 @@ export class ProfileView extends React.Component {
           Email: response.data.Email,
           Birthdate: response.data.Birthdate,
           FavoriteMovies: response.data.FavoriteMovies,
-        });
+        });0
       })
       .catch(function (error) {
         console.log(error);
