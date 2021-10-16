@@ -10,14 +10,14 @@ import { Link } from "react-router-dom";
 import './registration-view.scss';
 
 export function RegistrationView(props) {
-  const [name, setName] = useState("");
+
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [Birthday, setBirthday] = useState("");
 
 
-  const [nameError, setNameError] = useState({});
+
   const [UsernameError, setUsernameError] = useState({});
   const [PasswordError, setPasswordError] = useState({});
   const [emailError, setEmailError] = useState({});
@@ -28,7 +28,7 @@ export function RegistrationView(props) {
     let setisValid = formValidation();
     if (setisValid) {
       axios.post('https://mysterious-plateau-44583.herokuapp.com/users', {
-        Name: name,
+      
         Username: Username,
         Password: Password,
         Email: email,
@@ -46,17 +46,15 @@ export function RegistrationView(props) {
   }
 
   const formValidation = () => {
-    let nameError = {};
+  
     let UsernameError = {};
     let PasswordError = {};
     let emailError = {};
     let BirthdayError = {};
     let isValid = true;
 
-    if (name === '') {
-      nameError.nameEmpty = "Please enter your Name.";
-      isValid = false;
-    }
+ 
+    
     if (Username.trim().length < 4) {
       UsernameError.UsernameShort = "Username incorrect. Use at least 4 characters.";
       isValid = false;
@@ -73,7 +71,7 @@ export function RegistrationView(props) {
       BirthdayError.BirthdayEmpty = "Please enter your Birthday.";
       isValid = false;
     }
-    setNameError(nameError);
+ 
     setUsernameError(UsernameError);
     setPasswordError(PasswordError);
     setEmailError(emailError);
@@ -83,20 +81,7 @@ export function RegistrationView(props) {
 
   return (
     <Form className="register justify-content-md-center">
-      <Row>
-        <Form.Group controlId="formName">
-          <Form.Label>Name:</Form.Label>
-          <Form.Control type="text" value={name} onChange={e => setName(e.target.value)} />
-          {Object.keys(nameError).map((key) => {
-            return (
-              <div key={key}>
-                {nameError[key]}
-              </div>
-            );
-          })}
-        </Form.Group>
-      </Row>
-
+      
       <Form.Group controlId="formUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control type="text" value={Username} onChange={e => setUsername(e.target.value)} />
@@ -162,7 +147,6 @@ export function RegistrationView(props) {
 
 RegistrationView.propTypes = {
   register: PropTypes.shape({
-    Name: PropTypes.string.isRequired,
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,

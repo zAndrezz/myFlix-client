@@ -1,10 +1,9 @@
-
 import React from 'react';
 import axios from 'axios';
-import  Button  from 'react-bootstrap/Button';
-import  Card  from 'react-bootstrap/Card';
-import  Form  from 'react-bootstrap/Form';
-import  Row  from 'react-bootstrap/Row';
+import { Button, Card, CardDeck, Form, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import { setUser, updateUser } from '../../actions/actions';
 
 import './profile-view.scss';
 
@@ -13,11 +12,11 @@ export class ProfileView extends React.Component {
     super();
 
     this.state = {
-      Name: null,
+     
       Username: null,
       Password: null,
       Email: null,
-      Birthdate: null,
+      Birthday: null,
       FavoriteMovies: [],
       validated: null,
     };
@@ -39,13 +38,13 @@ export class ProfileView extends React.Component {
     })
       .then((response) => {
         this.setState({
-          Name: response.data.Name,
+          
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthdate: response.data.Birthdate,
+          Birthday: response.data.Birthday,
           FavoriteMovies: response.data.FavoriteMovies,
-        });0
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -58,7 +57,7 @@ export class ProfileView extends React.Component {
     const username = localStorage.getItem('user');
 
 
-    axios.delete(`https://mysterious-plateau-44583.herokuapp.com/users/${username}/removeFromFav/${movie._id}`, {
+    axios.delete(`https://mysterious-plateau-44583.herokuapp.com/users/${username}/RemoveFromFav/${movie._id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(() => {
@@ -70,7 +69,7 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleUpdate(e, newName, newUsername, newPassword, newEmail, newBirthdate) {
+  handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
     this.setState({
       validated: null,
     });
@@ -92,19 +91,21 @@ export class ProfileView extends React.Component {
     axios.put(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
       data: {
+     
         Username: newUsername ? newUsername : this.state.Username,
         Password: newPassword ? newPassword : this.state.Password,
         Email: newEmail ? newEmail : this.state.Email,
-        Birthdate: newBirthdate ? newBirthdate : this.state.Birthdate,
+        Birthday: newBirthday ? newBirthday : this.state.Birthday,
       },
     })
       .then((response) => {
         alert('Saved Changes');
         this.setState({
+         
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthdate: response.data.Birthdate,
+          Birthday: response.data.Birthday,
         });
         localStorage.setItem('user', this.state.Username);
         window.open(`/users/${username}`, '_self');
@@ -113,7 +114,6 @@ export class ProfileView extends React.Component {
         console.log(error);
       });
   }
- 
 
   setUsername(input) {
     this.Username = input;
@@ -127,8 +127,8 @@ export class ProfileView extends React.Component {
     this.Email = input;
   }
 
-  setBirthdate(input) {
-    this.Birthdate = input;
+  setBirthday(input) {
+    this.Birthday = input;
   }
 
   handleDeleteUser(e) {
@@ -164,25 +164,26 @@ export class ProfileView extends React.Component {
           <div className="favorites-movies">
             {FavoriteMovies.length > 0 &&
               movies.map((movie) => {
-                if (movie._id === FavoriteMovies.find((FavoriteMovie) => FavoriteMovie === movie._id)) {
+                if (movie._id === FavoriteMovies.find((favMovie) => favMovie === movie._id)) {
                   return (
-                    <Card key={movie._id} className="movie-card-deck">
-                        <Card.Img style={{ width: '18rem', 'padding-top': '10px' }} className="movieCard" variant="top" src={movie.ImagePath} />
+                    <CardDeck key={movie._id} className="movie-card-deck">
                       <Card className="favorites-item card-content border-0" style={{ width: '16rem' }} key={movie._id}>
+                        <Card.Img style={{ width: '18rem', 'padding-top': '10px' }} className="movieCard" variant="top" src={movie.ImageURL} />
                         <Card.Title className="movie-card-title">{movie.Title}</Card.Title>
                         <Button size='sm' className='profile-button remove-favorite' variant='danger' value={movie._id} onClick={() => this.removeFavouriteMovie(movie)}>
                           Remove
                         </Button>
                       </Card>
-                    </Card>
+                    </CardDeck>
                   );
                 }
               })}
           </div>
 
           <h1 className="Profile">Update Profile</h1>
-          <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthdate)}>
+          <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e,this.Username, this.Password, this.Email, this.Birthday)}>
 
+          
 
             <Form.Group controlId="formUsername">
               <Form.Label className="form-label">Username</Form.Label>
@@ -201,9 +202,9 @@ export class ProfileView extends React.Component {
               <Form.Control type="email" placeholder="Change Email" onChange={(e) => this.setEmail(e.target.value)} />
             </Form.Group>
 
-            <Form.Group controlId="formBirthdate">
-              <Form.Label className="form-label">Birthdate</Form.Label>
-              <Form.Control type="date" placeholder="Change Birthdate" onChange={(e) => this.setBirthdate(e.target.value)} />
+            <Form.Group controlId="formBirthday">
+              <Form.Label className="form-label">Birthday</Form.Label>
+              <Form.Control type="date" placeholder="Change Birthday" onChange={(e) => this.setBirthday(e.target.value)} />
             </Form.Group>
 
             <Button variant='danger' type="submit">
@@ -229,4 +230,4 @@ let mapStateToProps = state => {
   }
 }
 
-export default ProfileView;
+export default connect(mapStateToProps, { setUser, updateUser })(ProfileView);
