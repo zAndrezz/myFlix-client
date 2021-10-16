@@ -92,7 +92,6 @@ export class ProfileView extends React.Component {
     axios.put(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        Name: newName ? newName : this.state.Name,
         Username: newUsername ? newUsername : this.state.Username,
         Password: newPassword ? newPassword : this.state.Password,
         Email: newEmail ? newEmail : this.state.Email,
@@ -102,7 +101,6 @@ export class ProfileView extends React.Component {
       .then((response) => {
         alert('Saved Changes');
         this.setState({
-          Name: response.data.Name,
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
@@ -115,9 +113,7 @@ export class ProfileView extends React.Component {
         console.log(error);
       });
   }
-  setName(input) {
-    this.Name = input;
-  }
+ 
 
   setUsername(input) {
     this.Username = input;
@@ -171,6 +167,7 @@ export class ProfileView extends React.Component {
                 if (movie._id === FavoriteMovies.find((FavoriteMovie) => FavoriteMovie === movie._id)) {
                   return (
                     <Card key={movie._id} className="movie-card-deck">
+                        <Card.Img style={{ width: '18rem', 'padding-top': '10px' }} className="movieCard" variant="top" src={movie.ImagePath} />
                       <Card className="favorites-item card-content border-0" style={{ width: '16rem' }} key={movie._id}>
                         <Card.Title className="movie-card-title">{movie.Title}</Card.Title>
                         <Button size='sm' className='profile-button remove-favorite' variant='danger' value={movie._id} onClick={() => this.removeFavouriteMovie(movie)}>
@@ -184,12 +181,8 @@ export class ProfileView extends React.Component {
           </div>
 
           <h1 className="Profile">Update Profile</h1>
-          <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Name, this.Username, this.Password, this.Email, this.Birthdate)}>
+          <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthdate)}>
 
-            <Form.Group controlId="formName">
-              <Form.Label className="form-label">Name</Form.Label>
-              <Form.Control type="text" placeholder="Change Name" onChange={(e) => this.setName(e.target.value)} />
-            </Form.Group>
 
             <Form.Group controlId="formUsername">
               <Form.Label className="form-label">Username</Form.Label>
