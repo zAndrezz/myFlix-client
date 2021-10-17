@@ -38,6 +38,7 @@ export class ProfileView extends React.Component {
     })
       .then((response) => {
         this.setState({
+          
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
@@ -90,6 +91,7 @@ export class ProfileView extends React.Component {
     axios.put(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
       data: {
+     
         Username: newUsername ? newUsername : this.state.Username,
         Password: newPassword ? newPassword : this.state.Password,
         Email: newEmail ? newEmail : this.state.Email,
@@ -99,6 +101,7 @@ export class ProfileView extends React.Component {
       .then((response) => {
         alert('Saved Changes');
         this.setState({
+         
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
@@ -179,6 +182,9 @@ export class ProfileView extends React.Component {
 
           <h1 className="Profile">Update Profile</h1>
           <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e,this.Username, this.Password, this.Email, this.Birthday)}>
+
+          
+
             <Form.Group controlId="formUsername">
               <Form.Label className="form-label">Username</Form.Label>
               <Form.Control type="text" placeholder="Change Username" onChange={(e) => this.setUsername(e.target.value)} />
