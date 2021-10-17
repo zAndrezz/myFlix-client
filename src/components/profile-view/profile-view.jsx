@@ -90,16 +90,14 @@ export class ProfileView extends React.Component {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
   };
-    axios.put(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
-      
-      data: {
-     
+    axios.put(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`,  
+     {
         Username: newUsername ? newUsername : this.state.Username,
         Password: newPassword ? newPassword : this.state.Password,
         Email: newEmail ? newEmail : this.state.Email,
         Birthday: newBirthday ? newBirthday : this.state.Birthday,
-      }, config
-    })
+      },config
+    )
       .then((response) => {
         alert('Saved Changes');
         this.setState({
@@ -168,7 +166,7 @@ export class ProfileView extends React.Component {
               movies.map((movie) => {
                 if (movie._id === FavoriteMovies.find((favMovie) => favMovie === movie._id)) {
                   return (
-                    <CardDeck key={movie._id} className="movie-card-deck">
+               
                       <Card className="favorites-item card-content border-0" style={{ width: '16rem' }} key={movie._id}>
                         <Card.Img style={{ width: '18rem', 'padding-top': '10px' }} className="movieCard" variant="top" src={movie.ImageURL} />
                         <Card.Title className="movie-card-title">{movie.Title}</Card.Title>
@@ -176,7 +174,7 @@ export class ProfileView extends React.Component {
                           Remove
                         </Button>
                       </Card>
-                    </CardDeck>
+                  
                   );
                 }
               })}
@@ -187,7 +185,7 @@ export class ProfileView extends React.Component {
 
           
 
-0            <Form.Group controlId="formUsername">
+            <Form.Group controlId="formUsername">
               <Form.Label className="form-label">Username</Form.Label>
               <Form.Control type="text" placeholder="Change Username" onChange={(e) => this.setUsername(e.target.value)} />
             </Form.Group>
