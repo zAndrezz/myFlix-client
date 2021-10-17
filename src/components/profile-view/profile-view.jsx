@@ -87,16 +87,18 @@ export class ProfileView extends React.Component {
 
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
-
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
     axios.put(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      
       data: {
      
         Username: newUsername ? newUsername : this.state.Username,
         Password: newPassword ? newPassword : this.state.Password,
         Email: newEmail ? newEmail : this.state.Email,
         Birthday: newBirthday ? newBirthday : this.state.Birthday,
-      },
+      }, config
     })
       .then((response) => {
         alert('Saved Changes');
@@ -137,7 +139,7 @@ export class ProfileView extends React.Component {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
 
-    axios.delete(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {
+    axios.delete(`https://mysterious-plateau-44583.herokuapp.com/users/${username}`, {}, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(() => {
@@ -185,7 +187,7 @@ export class ProfileView extends React.Component {
 
           
 
-            <Form.Group controlId="formUsername">
+0            <Form.Group controlId="formUsername">
               <Form.Label className="form-label">Username</Form.Label>
               <Form.Control type="text" placeholder="Change Username" onChange={(e) => this.setUsername(e.target.value)} />
             </Form.Group>
