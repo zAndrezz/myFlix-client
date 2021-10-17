@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 // React-router-DOM components
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 // actions
-import { setMovies} from '../../actions/actions';
+import { setMovies, setUser} from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
  
 // React-Bootstrap Components
@@ -60,6 +60,13 @@ componentDidMount(){
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
+  }
+
+  onLoggedOut(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.props.setUser({});
+    window.open("/","_self");
   }
 
   //  Get user recent data from DB
@@ -179,4 +186,5 @@ let mapStateToProps = state => {
 }
 
 // #8
-export default connect(mapStateToProps, { setMovies } )(MainView);
+
+export default connect(mapStateToProps, { setMovies, setUser } )(MainView);
