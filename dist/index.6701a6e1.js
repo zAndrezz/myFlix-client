@@ -42973,7 +42973,6 @@ var _nav = require("react-bootstrap/Nav");
 var _navDefault = parcelHelpers.interopDefault(_nav);
 var _container = require("react-bootstrap/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
-var _reactRedux = require("react-redux");
 var _reactRouterDom = require("react-router-dom");
 var _navbarViewScss = require("./navbar-view.scss");
 class NavBar extends _reactDefault.default.Component {
@@ -42998,7 +42997,7 @@ class NavBar extends _reactDefault.default.Component {
             variant: "dark",
             __source: {
                 fileName: "src/components/navbar-view/navbar-view.jsx",
-                lineNumber: 31
+                lineNumber: 30
             },
             __self: this,
             children: [
@@ -43006,7 +43005,7 @@ class NavBar extends _reactDefault.default.Component {
                     "aria-controls": "basic-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 32
+                        lineNumber: 31
                     },
                     __self: this
                 }),
@@ -43014,14 +43013,14 @@ class NavBar extends _reactDefault.default.Component {
                     id: "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 34
+                        lineNumber: 33
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_navDefault.default, {
                         className: "ml-auto",
                         __source: {
                             fileName: "src/components/navbar-view/navbar-view.jsx",
-                            lineNumber: 35
+                            lineNumber: 34
                         },
                         __self: this,
                         children: [
@@ -43031,7 +43030,7 @@ class NavBar extends _reactDefault.default.Component {
                                 className: "link-text",
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 37
+                                    lineNumber: 36
                                 },
                                 __self: this,
                                 children: "Movies"
@@ -43042,7 +43041,7 @@ class NavBar extends _reactDefault.default.Component {
                                 className: "link-text",
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 41
+                                    lineNumber: 40
                                 },
                                 __self: this,
                                 children: "Profile"
@@ -43052,7 +43051,7 @@ class NavBar extends _reactDefault.default.Component {
                                 onClick: this.onLoggedOut,
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 45
+                                    lineNumber: 44
                                 },
                                 __self: this,
                                 children: "Log Out"
@@ -43071,7 +43070,7 @@ exports.default = NavBar;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Navbar":"eYZQl","react-bootstrap/Nav":"io07g","react-bootstrap/Container":"2PRIq","react-redux":"2L0if","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","./navbar-view.scss":"eDP1C"}],"eDP1C":[function() {},{}],"jyMAr":[function() {},{}],"8GWVf":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Navbar":"eYZQl","react-bootstrap/Nav":"io07g","react-bootstrap/Container":"2PRIq","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","./navbar-view.scss":"eDP1C"}],"eDP1C":[function() {},{}],"jyMAr":[function() {},{}],"8GWVf":[function(require,module,exports) {
 'use strict';
 var compose = require('redux').compose;
 exports.__esModule = true;
