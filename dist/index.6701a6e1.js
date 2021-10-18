@@ -25525,7 +25525,7 @@ parcelHelpers.export(exports, "setMovies", ()=>setMovies
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
 // sets user
-parcelHelpers.export(exports, "setUsers", ()=>setUsers
+parcelHelpers.export(exports, "setUser", ()=>setUser
 );
 const SET_MOVIES = "SET_MOVIES";
 const SET_FILTER = "SET_FILTER";
@@ -25542,7 +25542,7 @@ function setFilter(value) {
         value
     };
 }
-function setUsers(value) {
+function setUser(value) {
     return {
         type: SET_USER,
         value
