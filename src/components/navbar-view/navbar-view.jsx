@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
-
+import './navbar-view.scss'
 
 export class NavBar extends React.Component {
   constructor() {
@@ -28,7 +28,7 @@ export class NavBar extends React.Component {
     if (!user) return null;
 
     return (
-      <Navbar bg="dark" collapseOnSelect fixed='top' expand="lg" variant="dark" >
+      <Navbar bg="dark" collapseOnSelect  expand="lg" variant="dark" >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">

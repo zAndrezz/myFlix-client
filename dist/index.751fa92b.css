@@ -1,23 +1,41 @@
-body {
-  box-sizing: border-box;
+
+.image-container {
+  transition: transform 0.2s;
+  border-style: none;
+}
+
+.image-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  font-size: 10px;
   padding: 20px;
-  margin: auto;
+  text-align: center;
 }
 
-.form-control {
-  box-sizing: border-box;
-}
-
-.app-container {
-  padding: 1%;
-  box-sizing: border-box;
-  margin-bottom: 80px;
-  display: block;
+.fav-btn {
+  padding-left: 35px;
 }
 
 
 
 
+
+.Card {
+  margin: 10px;
+  padding: 10px;
+}
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.1 (https://getbootstrap.com/)
@@ -10412,5 +10430,8 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+* {
+  margin: 5px;
 }
 /*# sourceMappingURL=index.751fa92b.css.map */

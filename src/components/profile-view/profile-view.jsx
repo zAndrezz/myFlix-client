@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Card, CardDeck, Form, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { setUser, updateUser } from '../../actions/actions';
+import { setUser } from '../../actions/actions';
 
 import './profile-view.scss';
 
@@ -26,6 +26,7 @@ export class ProfileView extends React.Component {
     const accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       this.getUser(accessToken);
+
     }
   }
 
@@ -45,6 +46,7 @@ export class ProfileView extends React.Component {
           Birthday: response.data.Birthday,
           FavoriteMovies: response.data.FavoriteMovies,
         });
+     
       })
       .catch(function (error) {
         console.log(error);
@@ -230,4 +232,4 @@ let mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { setUser, updateUser })(ProfileView);
+export default connect(mapStateToProps, { setUser})(ProfileView);
