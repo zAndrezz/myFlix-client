@@ -11,6 +11,10 @@
 
 .image-container:hover .overlay {
   opacity: 1;
+  height: 10px;
+  object-fit: cover;
+  display: block;
+  width: 100%;
 }
 
 .overlay {
@@ -26,6 +30,20 @@
 
 .fav-btn {
   padding-left: 35px;
+}
+
+.container {
+  max-width: 1px;
+  margin: 0 auto;
+}
+.container--fluid {
+  margin: 0;
+  max-width: 100%;
+}
+.container__row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 
@@ -99,7 +117,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+ 
 }
 @media (prefers-reduced-motion: no-preference) {
   :root {

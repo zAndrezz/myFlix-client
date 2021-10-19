@@ -9,7 +9,12 @@
 }
 
 .image-container:hover .overlay {
-    opacity: 1;
+      opacity: 1;
+     height: 10px;
+     object-fit: cover;
+     display: block;
+     width: 100%;
+      
 }
 
 .overlay {
@@ -26,3 +31,21 @@
 .fav-btn {
     padding-left: 35px,
 }
+
+
+.container {
+    max-width:  1px;
+    margin: 0 auto;
+    &--fluid {
+      margin: 0;
+      max-width: 100%;
+    }
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+  
+
+  
