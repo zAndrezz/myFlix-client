@@ -1,7 +1,9 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-html {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+@media screen and (min-width: 600px) {
+	.main {
+		-webkit-flex-direction: row;
+		-ms-flex-direction: row;
+		flex-direction: row;
+	}
 }
-
