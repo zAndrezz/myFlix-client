@@ -4200,6 +4200,7 @@ textarea.form-control-lg {
   color: #fff;
 }
 .card {
+  margin: 6%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -4234,7 +4235,8 @@ textarea.form-control-lg {
 }
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  padding: 2px;
+  text-align: center;
 }
 .card-title {
   margin-bottom: 0.5rem;
@@ -10444,7 +10446,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-* {
-  margin: 5px;
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 /*# sourceMappingURL=index.751fa92b.css.map */
